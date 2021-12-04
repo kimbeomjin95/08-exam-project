@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import classes from './AddUser.module.css';
 import Card from '../UI/Card';
 import Button from '../UI/Button';
+import ErrorModal from '../UI/ErrorModal';
 
 const AddUser = props => {
   const [userName, setUserName] = useState('');
@@ -35,20 +36,28 @@ const AddUser = props => {
   };
 
   return (
-    <Card className={classes.input}>
-      <form onSubmit={addUserHandler}>
-        <label htmlFor="username">Username</label>
-        <input
-          id="username"
-          type="text"
-          value={userName}
-          onChange={userNameChangeHandler}
-        />
-        <label htmlFor="age">Age (Years)</label>
-        <input id="age" type="number" value={age} onChange={ageChangeHandler} />
-        <Button type="submit">Add User</Button>
-      </form>
-    </Card>
+    <Fragment>
+      <ErrorModal title="제목" message="내용" />
+      <Card className={classes.input}>
+        <form onSubmit={addUserHandler}>
+          <label htmlFor="username">Username</label>
+          <input
+            id="username"
+            type="text"
+            value={userName}
+            onChange={userNameChangeHandler}
+          />
+          <label htmlFor="age">Age (Years)</label>
+          <input
+            id="age"
+            type="number"
+            value={age}
+            onChange={ageChangeHandler}
+          />
+          <Button type="submit">Add User</Button>
+        </form>
+      </Card>
+    </Fragment>
   );
 };
 
