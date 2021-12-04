@@ -19,6 +19,8 @@ const AddUser = props => {
     if (+age < 1) {
       return;
     }
+
+    props.onAddUser(userName, age);
     console.log(userName, age);
     setUserName('');
     setAge('');
